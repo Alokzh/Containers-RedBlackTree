@@ -12,8 +12,56 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'accessing' }
+CTRBTAbstractNode >> color [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> color: aColor [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> contents [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> contents: anObject [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> height [ 
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'testing' }
+CTRBTAbstractNode >> isBlack [
+
+	^ self subclassResponsibility 
+]
+
 { #category : 'testing' }
 CTRBTAbstractNode >> isEmpty [ 
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'testing' }
+CTRBTAbstractNode >> isLeaf [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'testing' }
+CTRBTAbstractNode >> isRed [
 
 	^ self subclassResponsibility 
 ]
@@ -28,4 +76,10 @@ CTRBTAbstractNode >> parent [
 CTRBTAbstractNode >> parent: aNode [
 
 	parent := aNode
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> size [
+
+	^ self subclassResponsibility 
 ]

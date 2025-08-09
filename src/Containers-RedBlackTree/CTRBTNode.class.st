@@ -14,6 +14,36 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'accessing' }
+CTRBTNode >> color [
+
+	^ color
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> color: aColor [
+
+	color := aColor
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> contents [
+
+	^ contents
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> contents: anObject [
+
+	contents := anObject
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> height [
+
+	^ 1 + (left height max: right height)
+]
+
 { #category : 'initialization' }
 CTRBTNode >> initialize [
 
@@ -24,7 +54,57 @@ CTRBTNode >> initialize [
 ]
 
 { #category : 'testing' }
+CTRBTNode >> isBlack [
+
+	^ color = #black
+]
+
+{ #category : 'testing' }
 CTRBTNode >> isEmpty [
 
 	^ false
+]
+
+{ #category : 'testing' }
+CTRBTNode >> isLeaf [
+
+	^ left isEmpty and: [ right isEmpty ]
+]
+
+{ #category : 'testing' }
+CTRBTNode >> isRed [
+
+	^ color = #red
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> left [
+
+	^ left
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> left: aNode [
+
+	left := aNode.
+	aNode ifNotNil: [ aNode parent: self ]
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> right [
+
+	^ right
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> right: aNode [
+
+	right := aNode.
+	aNode ifNotNil: [ aNode parent: self ]
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> size [
+
+	^ 1 + left size + right size
 ]

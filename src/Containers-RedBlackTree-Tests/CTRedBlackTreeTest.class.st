@@ -19,7 +19,18 @@ CTRedBlackTreeTest >> setUp [
 ]
 
 { #category : 'tests' }
-CTRedBlackTreeTest >> testInitialStateEmpty [
+CTRedBlackTreeTest >> testClear [
 
-	self assert: tree isEmpty 
+	tree clear.
+	self assert: tree isEmpty.
+	self assert: tree size equals: 0
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testEmpty [
+
+	self assert: tree isEmpty.
+	self assert: tree size equals: 0.
+	self assert: tree height equals: 0
+	
 ]

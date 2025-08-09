@@ -17,11 +17,17 @@ CTRedBlackTree >> clear [
 	root := CTRBTNilNode new
 ]
 
+{ #category : 'accessing' }
+CTRedBlackTree >> height [
+
+	^ root height
+]
+
 { #category : 'initialization' }
 CTRedBlackTree >> initialize [
 
 	super initialize.
-	self clear
+	root := CTRBTNilNode new
 ]
 
 { #category : 'testing' }
@@ -34,4 +40,10 @@ CTRedBlackTree >> isEmpty [
 CTRedBlackTree >> root [
 
 	^ root isEmpty ifTrue: [ nil ] ifFalse: [ root ]
+]
+
+{ #category : 'accessing' }
+CTRedBlackTree >> size [
+
+	^ root size
 ]
