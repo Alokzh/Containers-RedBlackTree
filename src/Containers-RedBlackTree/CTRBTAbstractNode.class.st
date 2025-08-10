@@ -12,6 +12,12 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'adding' }
+CTRBTAbstractNode >> addChild: anObject [
+
+	^ self subclassResponsibility
+]
+
 { #category : 'accessing' }
 CTRBTAbstractNode >> color [
 

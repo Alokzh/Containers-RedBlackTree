@@ -14,6 +14,16 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'adding' }
+CTRBTNode >> addChild: anObject [
+
+	anObject < contents
+		ifTrue: [ self left: (left addChild: anObject) ]
+		ifFalse: [
+			anObject > contents ifTrue: [ self right: (right addChild: anObject) ] ].
+	^ self
+]
+
 { #category : 'accessing' }
 CTRBTNode >> color [
 

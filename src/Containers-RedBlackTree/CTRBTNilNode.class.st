@@ -8,6 +8,16 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'adding' }
+CTRBTNilNode >> addChild: anObject [
+
+	^ CTRBTNode new
+		contents: anObject;
+		color: #red;
+		parent: self parent;
+		yourself
+]
+
 { #category : 'accessing' }
 CTRBTNilNode >> color [
 

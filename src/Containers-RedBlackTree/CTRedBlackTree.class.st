@@ -11,6 +11,22 @@ Class {
 	#package : 'Containers-RedBlackTree'
 }
 
+{ #category : 'adding' }
+CTRedBlackTree >> add: anObject [
+
+	root := root addChild: anObject.
+	root color: #black.
+	root parent: nil.
+	^ anObject
+]
+
+{ #category : 'adding' }
+CTRedBlackTree >> addAll: aCollection [
+
+	aCollection do: [ :each | self add: each ].
+	^ aCollection
+]
+
 { #category : 'removing' }
 CTRedBlackTree >> clear [
 
