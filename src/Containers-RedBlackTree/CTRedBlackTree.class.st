@@ -36,6 +36,13 @@ CTRedBlackTree >> asArray [
 	^ result asArray
 ]
 
+{ #category : 'accessing' }
+CTRedBlackTree >> blackHeight [
+
+	"Return the black height of the tree"
+	^ root blackHeight
+]
+
 { #category : 'removing' }
 CTRedBlackTree >> clear [
 

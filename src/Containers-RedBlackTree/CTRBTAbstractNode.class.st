@@ -19,6 +19,12 @@ CTRBTAbstractNode >> addChild: anObject [
 ]
 
 { #category : 'accessing' }
+CTRBTAbstractNode >> blackHeight [
+
+	^ self subclassResponsibility
+]
+
+{ #category : 'accessing' }
 CTRBTAbstractNode >> color [
 
 	^ self subclassResponsibility 

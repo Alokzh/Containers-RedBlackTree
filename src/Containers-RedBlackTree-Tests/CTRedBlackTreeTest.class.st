@@ -42,6 +42,16 @@ CTRedBlackTreeTest >> testAsArray [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testBlackHeight [
+
+	self assert: tree blackHeight equals: 0.
+	tree add: 10.
+	self assert: tree blackHeight equals: 1.
+	tree addAll: #(5 15).
+	self assert: tree blackHeight equals: 1
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testClear [
 
 	tree clear.
@@ -74,6 +84,16 @@ CTRedBlackTreeTest >> testFindMinMax [
 	tree addAll: #(50 30 70 20 80 10 90).
 	self assert: tree findMin equals: 10.
 	self assert: tree findMax equals: 90
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testHeight [
+
+	self assert: tree height equals: 0.
+	tree add: 50.
+	self assert: tree height equals: 1.
+	tree addAll: #(30 70).
+	self assert: tree height equals: 2
 ]
 
 { #category : 'tests' }

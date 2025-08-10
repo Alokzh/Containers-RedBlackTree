@@ -19,6 +19,12 @@ CTRBTNilNode >> addChild: anObject [
 ]
 
 { #category : 'accessing' }
+CTRBTNilNode >> blackHeight [
+
+	^  0
+]
+
+{ #category : 'accessing' }
 CTRBTNilNode >> color [
 
 	^ #black
