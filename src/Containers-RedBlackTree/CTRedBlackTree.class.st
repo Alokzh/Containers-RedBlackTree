@@ -27,16 +27,56 @@ CTRedBlackTree >> addAll: aCollection [
 	^ aCollection
 ]
 
+{ #category : 'converting' }
+CTRedBlackTree >> asArray [
+
+	| result |
+	result := OrderedCollection new: self size.
+	self inOrderDo: [ :each | result add: each ].
+	^ result asArray
+]
+
 { #category : 'removing' }
 CTRedBlackTree >> clear [
 
 	root := CTRBTNilNode new
 ]
 
+{ #category : 'enumerating' }
+CTRedBlackTree >> do: aBlock [
+
+	"Alias for inOrderDo: - visits elements in sorted order"
+	self inOrderDo: aBlock
+]
+
+{ #category : 'searching' }
+CTRedBlackTree >> findMax [
+
+	^ root findMax
+]
+
+{ #category : 'searching' }
+CTRedBlackTree >> findMin [
+
+	^ root findMin
+]
+
 { #category : 'accessing' }
 CTRedBlackTree >> height [
 
 	^ root height
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> inOrderDo: aBlock [
+
+	root inOrderDo: aBlock
+]
+
+{ #category : 'testing' }
+CTRedBlackTree >> includes: anObject [
+
+	^ (root search: anObject) notNil
 ]
 
 { #category : 'initialization' }

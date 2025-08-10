@@ -48,10 +48,34 @@ CTRBTNode >> contents: anObject [
 	contents := anObject
 ]
 
+{ #category : 'searching' }
+CTRBTNode >> findMax [
+
+	^ right isEmpty
+		ifTrue: [ contents ]
+		ifFalse: [ right findMax ]
+]
+
+{ #category : 'searching' }
+CTRBTNode >> findMin [
+
+	^ left isEmpty
+		ifTrue: [ contents ]
+		ifFalse: [ left findMin ]
+]
+
 { #category : 'accessing' }
 CTRBTNode >> height [
 
 	^ 1 + (left height max: right height)
+]
+
+{ #category : 'enumerating' }
+CTRBTNode >> inOrderDo: aBlock [
+
+	left inOrderDo: aBlock.
+	aBlock value: contents.
+	right inOrderDo: aBlock
 ]
 
 { #category : 'initialization' }
@@ -111,6 +135,15 @@ CTRBTNode >> right: aNode [
 
 	right := aNode.
 	aNode ifNotNil: [ aNode parent: self ]
+]
+
+{ #category : 'accessing' }
+CTRBTNode >> search: anObject [
+
+	contents = anObject ifTrue: [ ^ contents ].
+	^ anObject < contents
+		ifTrue: [ left search: anObject ]
+		ifFalse: [ right search: anObject ]
 ]
 
 { #category : 'accessing' }

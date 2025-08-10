@@ -42,8 +42,26 @@ CTRBTAbstractNode >> contents: anObject [
 	^ self subclassResponsibility 
 ]
 
+{ #category : 'searching' }
+CTRBTAbstractNode >> findMax [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'searching' }
+CTRBTAbstractNode >> findMin [
+
+	^ self subclassResponsibility 
+]
+
 { #category : 'accessing' }
 CTRBTAbstractNode >> height [ 
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> inOrderDo: aBlock [
 
 	^ self subclassResponsibility 
 ]
@@ -82,6 +100,12 @@ CTRBTAbstractNode >> parent [
 CTRBTAbstractNode >> parent: aNode [
 
 	parent := aNode
+]
+
+{ #category : 'accessing' }
+CTRBTAbstractNode >> search: anObject [
+
+	^ self subclassResponsibility 
 ]
 
 { #category : 'accessing' }

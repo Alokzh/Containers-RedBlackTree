@@ -35,6 +35,13 @@ CTRedBlackTreeTest >> testAddSingleElement [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testAsArray [
+
+	tree addAll: #(50 30 70 20 40 60 80).
+	self assert: tree asArray equals: #(20 30 40 50 60 70 80)
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testClear [
 
 	tree clear.
@@ -56,4 +63,34 @@ CTRedBlackTreeTest >> testEmpty [
 	self assert: tree size equals: 0.
 	self assert: tree height equals: 0
 	
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testFindMinMax [
+
+	self assert: tree findMin isNil.
+	self assert: tree findMax isNil.
+	
+	tree addAll: #(50 30 70 20 80 10 90).
+	self assert: tree findMin equals: 10.
+	self assert: tree findMax equals: 90
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testInOrderTraversal [
+
+	| result |
+	tree addAll: #(50 30 70 20 40).
+	result := OrderedCollection new.
+	tree inOrderDo: [ :each | result add: each ].
+	self assert: result asArray equals: #(20 30 40 50 70)
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testIncludes [
+
+	tree addAll: #(50 30 70 20 40).
+	self assert: (tree includes: 50).
+	self assert: (tree includes: 30).
+	self deny: (tree includes: 99)
 ]

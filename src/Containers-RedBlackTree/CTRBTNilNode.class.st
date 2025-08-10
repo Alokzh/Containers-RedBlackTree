@@ -42,10 +42,28 @@ CTRBTNilNode >> contents: anObject [
 	"Do Nothing for Nil Node"
 ]
 
+{ #category : 'searching' }
+CTRBTNilNode >> findMax [ 
+
+	^ nil
+]
+
+{ #category : 'searching' }
+CTRBTNilNode >> findMin [ 
+
+	^ nil
+]
+
 { #category : 'accessing' }
 CTRBTNilNode >> height [ 
 
 	^ 0
+]
+
+{ #category : 'enumerating' }
+CTRBTNilNode >> inOrderDo: aBlock [
+
+	"Do nothing for nil node"
 ]
 
 { #category : 'testing' }
@@ -70,6 +88,12 @@ CTRBTNilNode >> isLeaf [
 CTRBTNilNode >> isRed [
 
 	^ false
+]
+
+{ #category : 'accessing' }
+CTRBTNilNode >> search: anObject [
+
+	^ nil
 ]
 
 { #category : 'accessing' }
