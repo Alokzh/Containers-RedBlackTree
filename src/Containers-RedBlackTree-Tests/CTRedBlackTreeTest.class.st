@@ -87,6 +87,14 @@ CTRedBlackTreeTest >> testFindMinMax [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testFindMinMaxNode [
+
+	tree addAll: #(50 30 70 20 80).
+	self assert: tree findMinNode contents equals: 20.
+	self assert: tree findMaxNode contents equals: 80
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testHeight [
 
 	self assert: tree height equals: 0.

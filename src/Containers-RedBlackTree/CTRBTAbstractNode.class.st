@@ -55,9 +55,21 @@ CTRBTAbstractNode >> findMax [
 ]
 
 { #category : 'searching' }
+CTRBTAbstractNode >> findMaxNode [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'searching' }
 CTRBTAbstractNode >> findMin [
 
 	^ self subclassResponsibility 
+]
+
+{ #category : 'searching' }
+CTRBTAbstractNode >> findMinNode [
+
+	self subclassResponsibility 
 ]
 
 { #category : 'accessing' }

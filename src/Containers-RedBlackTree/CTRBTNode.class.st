@@ -63,11 +63,27 @@ CTRBTNode >> findMax [
 ]
 
 { #category : 'searching' }
+CTRBTNode >> findMaxNode [
+
+	^ right isEmpty
+		ifTrue: [ self ]
+		ifFalse: [ right findMaxNode ]
+]
+
+{ #category : 'searching' }
 CTRBTNode >> findMin [
 
 	^ left isEmpty
 		ifTrue: [ contents ]
 		ifFalse: [ left findMin ]
+]
+
+{ #category : 'searching' }
+CTRBTNode >> findMinNode [
+
+	^ left isEmpty
+		ifTrue: [ self ]
+		ifFalse: [ left findMinNode ]
 ]
 
 { #category : 'private' }

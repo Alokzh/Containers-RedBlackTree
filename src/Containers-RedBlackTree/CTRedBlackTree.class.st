@@ -63,9 +63,25 @@ CTRedBlackTree >> findMax [
 ]
 
 { #category : 'searching' }
+CTRedBlackTree >> findMaxNode [
+
+	^ self isEmpty
+		ifTrue: [ nil ]
+		ifFalse: [ root findMaxNode ]
+]
+
+{ #category : 'searching' }
 CTRedBlackTree >> findMin [
 
 	^ root findMin
+]
+
+{ #category : 'searching' }
+CTRedBlackTree >> findMinNode [
+
+	^ self isEmpty
+		ifTrue: [ nil ]
+		ifFalse: [ root findMinNode ]
 ]
 
 { #category : 'accessing' }
