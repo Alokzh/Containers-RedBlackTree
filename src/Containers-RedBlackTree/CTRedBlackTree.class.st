@@ -110,3 +110,18 @@ CTRedBlackTree >> size [
 
 	^ root size
 ]
+
+{ #category : 'accessing' }
+CTRedBlackTree >> validate [
+
+	"Validate that the tree maintains Red-Black Tree properties"
+	^ root isEmpty or: [ 
+		root isBlack and: [ root validateBSTProperty ] ]
+]
+
+{ #category : 'validation' }
+CTRedBlackTree >> validateBSTProperty [
+
+	"Validate that the tree maintains Red-Black Tree properties"
+	^ self validate
+]

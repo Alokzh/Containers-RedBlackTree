@@ -119,3 +119,15 @@ CTRBTAbstractNode >> size [
 
 	^ self subclassResponsibility 
 ]
+
+{ #category : 'validation' }
+CTRBTAbstractNode >> validateBSTProperty [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'validation' }
+CTRBTAbstractNode >> validateBSTPropertyWithMin: min max: max [
+
+	^ self subclassResponsibility 
+]

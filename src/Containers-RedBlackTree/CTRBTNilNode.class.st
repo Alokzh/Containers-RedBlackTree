@@ -107,3 +107,15 @@ CTRBTNilNode >> size [
 
 	^ 0
 ]
+
+{ #category : 'validation' }
+CTRBTNilNode >> validateBSTProperty [
+
+	^ true
+]
+
+{ #category : 'validation' }
+CTRBTNilNode >> validateBSTPropertyWithMin: min max: max [
+
+	^ true
+]

@@ -134,3 +134,13 @@ CTRedBlackTreeTest >> testRootIsAlwaysBlack [
 	tree addAll: #(30 70 20 40 60 80).
 	self assert: tree root isBlack
 ]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testValidation [
+
+	self assert: tree validate.
+	tree addAll: #(50 30 70 20 40).
+	self assert: tree validate.
+	tree add: 60.
+	self assert: tree validate
+]

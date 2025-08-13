@@ -287,3 +287,25 @@ CTRBTNode >> size [
 
 	^ 1 + left size + right size
 ]
+
+{ #category : 'validation' }
+CTRBTNode >> validateBSTProperty [
+
+	^ self validateBSTPropertyWithMin: nil max: nil
+]
+
+{ #category : 'validation' }
+CTRBTNode >> validateBSTPropertyWithMin: min max: max [
+
+	"Check BST property"
+	(min notNil and: [ contents < min ]) ifTrue: [ ^ false ].
+	(max notNil and: [ contents > max ]) ifTrue: [ ^ false ].
+	
+	"Check Red-Black properties"
+	(self isRed and: [ left isRed or: [ right isRed ] ]) ifTrue: [ ^ false ].
+	left blackHeight ~= right blackHeight ifTrue: [ ^ false ].
+	
+	"Recursively validate children"
+	^ (left validateBSTPropertyWithMin: min max: contents) and: [
+		right validateBSTPropertyWithMin: contents max: max ]
+]
