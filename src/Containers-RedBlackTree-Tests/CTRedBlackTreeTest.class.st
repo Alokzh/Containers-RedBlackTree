@@ -114,3 +114,23 @@ CTRedBlackTreeTest >> testIncludes [
 	self assert: (tree includes: 30).
 	self deny: (tree includes: 99)
 ]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testInsertionRebalancing [
+
+	tree addAll: #(20 10 30).
+	tree add: 5.
+	self assert: tree root color equals: #black.
+	tree add: 15.
+	tree add: 25.
+	tree add: 35
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testRootIsAlwaysBlack [
+
+	tree add: 50.
+	self assert: tree root isBlack.
+	tree addAll: #(30 70 20 40 60 80).
+	self assert: tree root isBlack
+]

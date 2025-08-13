@@ -21,7 +21,7 @@ CTRBTNode >> addChild: anObject [
 		ifTrue: [ self left: (left addChild: anObject) ]
 		ifFalse: [
 			anObject > contents ifTrue: [ self right: (right addChild: anObject) ] ].
-	^ self
+	^ self fixAfterInsertion
 ]
 
 { #category : 'accessing' }
@@ -68,6 +68,80 @@ CTRBTNode >> findMin [
 	^ left isEmpty
 		ifTrue: [ contents ]
 		ifFalse: [ left findMin ]
+]
+
+{ #category : 'private' }
+CTRBTNode >> findNewlyInsertedNode [
+
+	"Find the red node that was just inserted"
+	| queue current |
+	queue := OrderedCollection with: self.
+	
+	[ queue isEmpty ] whileFalse: [
+		current := queue removeFirst.
+		current isRed ifTrue: [
+			(current left isEmpty and: [ current right isEmpty ]) ifTrue: [ ^ current ] ].
+		current left isEmpty ifFalse: [ queue add: current left ].
+		current right isEmpty ifFalse: [ queue add: current right ] ].
+	
+	^ self
+]
+
+{ #category : 'private' }
+CTRBTNode >> fixAfterInsertion [
+
+	| currentNode uncle grandparent newRoot |
+	newRoot := self.
+	
+	"Find the newly inserted red node"
+	currentNode := self findNewlyInsertedNode.
+	
+	[ currentNode parent notNil and: [ currentNode parent isRed ] ] whileTrue: [
+		grandparent := currentNode parent parent.
+		currentNode parent == grandparent left
+			ifTrue: [
+				uncle := grandparent right.
+				uncle isRed
+					ifTrue: [
+						"Case 1: Red uncle - recolor"
+						currentNode parent color: #black.
+						uncle color: #black.
+						grandparent color: #red.
+						currentNode := grandparent ]
+					ifFalse: [
+						"Case 2 & 3: Black uncle"
+						currentNode == currentNode parent right ifTrue: [
+							"Case 2: Triangle - rotate to make line"
+							currentNode := currentNode parent.
+							newRoot := currentNode rotateLeftAndUpdateRoot: newRoot ].
+						"Case 3: Line - rotate and recolor"
+						currentNode parent color: #black.
+						grandparent color: #red.
+						newRoot := grandparent rotateRightAndUpdateRoot: newRoot ] ]
+			ifFalse: [
+				"Mirror cases for right side"
+				uncle := grandparent left.
+				uncle isRed
+					ifTrue: [
+						"Case 1: Red uncle"
+						currentNode parent color: #black.
+						uncle color: #black.
+						grandparent color: #red.
+						currentNode := grandparent ]
+					ifFalse: [
+						"Case 2 & 3: Black uncle"
+						currentNode == currentNode parent left ifTrue: [
+							"Case 2: Triangle"
+							currentNode := currentNode parent.
+							newRoot := currentNode rotateRightAndUpdateRoot: newRoot ].
+						"Case 3: Line"
+						currentNode parent color: #black.
+						grandparent color: #red.
+						newRoot := grandparent rotateLeftAndUpdateRoot: newRoot ] ] ].
+	
+	"Ensure root is black"
+	newRoot color: #black.
+	^ newRoot
 ]
 
 { #category : 'accessing' }
