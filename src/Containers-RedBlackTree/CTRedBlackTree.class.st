@@ -115,6 +115,24 @@ CTRedBlackTree >> isEmpty [
 	^ root isEmpty
 ]
 
+{ #category : 'removing' }
+CTRedBlackTree >> remove: anObject [
+
+	^ self
+		remove: anObject
+		ifAbsent: [ NotFound signalFor: anObject in: self ]
+]
+
+{ #category : 'removing' }
+CTRedBlackTree >> remove: anObject ifAbsent: aBlock [
+
+	(self includes: anObject) ifFalse: [ ^ aBlock value ].
+	root := root removeValue: anObject.
+	root parent: nil.
+	root isEmpty ifFalse: [ root color: #black ].
+	^ anObject
+]
+
 { #category : 'accessing' }
 CTRedBlackTree >> root [
 

@@ -104,6 +104,76 @@ CTRBTNode >> findNewlyInsertedNode [
 ]
 
 { #category : 'private' }
+CTRBTNode >> fixAfterDeletion [
+
+	| currentNode sibling newRoot |
+	newRoot := self.
+	currentNode := self.
+	
+	[ currentNode isRed or: [ currentNode parent isNil ] ] whileFalse: [
+		currentNode == currentNode parent left
+			ifTrue: [
+				"Current is left child"
+				sibling := currentNode parent right.
+				
+				"Case 1: Red sibling"
+				sibling isRed ifTrue: [
+					sibling color: #black.
+					currentNode parent color: #red.
+					newRoot := currentNode parent rotateLeftAndUpdateRoot: newRoot.
+					sibling := currentNode parent right ].
+				
+				"Case 2: Black sibling with black children"
+				(sibling left isBlack and: [ sibling right isBlack ]) ifTrue: [
+					sibling color: #red.
+					currentNode := currentNode parent ]
+				ifFalse: [
+					"Case 3: Black sibling with red left child"
+					sibling right isBlack ifTrue: [
+						sibling left color: #black.
+						sibling color: #red.
+						newRoot := sibling rotateRightAndUpdateRoot: newRoot.
+						sibling := currentNode parent right ].
+					"Case 4: Black sibling with red right child"
+					sibling color: currentNode parent color.
+					currentNode parent color: #black.
+					sibling right color: #black.
+					newRoot := currentNode parent rotateLeftAndUpdateRoot: newRoot.
+					currentNode := newRoot "Exit loop" ] ]
+			ifFalse: [
+				"Current is right child - mirror cases"
+				sibling := currentNode parent left.
+				
+				"Case 1: Red sibling"
+				sibling isRed ifTrue: [
+					sibling color: #black.
+					currentNode parent color: #red.
+					newRoot := currentNode parent rotateRightAndUpdateRoot: newRoot.
+					sibling := currentNode parent left ].
+				
+				"Case 2: Black sibling with black children"
+				(sibling left isBlack and: [ sibling right isBlack ]) ifTrue: [
+					sibling color: #red.
+					currentNode := currentNode parent ]
+				ifFalse: [
+					"Case 3: Black sibling with red right child"
+					sibling left isBlack ifTrue: [
+						sibling right color: #black.
+						sibling color: #red.
+						newRoot := sibling rotateLeftAndUpdateRoot: newRoot.
+						sibling := currentNode parent left ].
+					"Case 4: Black sibling with red left child"
+					sibling color: currentNode parent color.
+					currentNode parent color: #black.
+					sibling left color: #black.
+					newRoot := currentNode parent rotateRightAndUpdateRoot: newRoot.
+					currentNode := newRoot "Exit loop" ] ] ].
+	
+	currentNode color: #black.
+	^ newRoot
+]
+
+{ #category : 'private' }
 CTRBTNode >> fixAfterInsertion [
 
 	| currentNode uncle grandparent newRoot |
@@ -218,6 +288,75 @@ CTRBTNode >> left: aNode [
 
 	left := aNode.
 	aNode ifNotNil: [ aNode parent: self ]
+]
+
+{ #category : 'removing' }
+CTRBTNode >> removeThisNode [
+
+	"Complete removal with proper fixup"
+	| successor originalColor replacementNode newRoot |
+	originalColor := self color.
+	newRoot := self.
+	
+	"Case 1: No left child"
+	left isEmpty ifTrue: [
+		replacementNode := right.
+		newRoot := self replaceWith: right.
+		originalColor = #black ifTrue: [
+			newRoot := replacementNode fixAfterDeletion ].
+		^ newRoot ].
+	
+	"Case 2: No right child"
+	right isEmpty ifTrue: [
+		replacementNode := left.
+		newRoot := self replaceWith: left.
+		originalColor = #black ifTrue: [
+			newRoot := replacementNode fixAfterDeletion ].
+		^ newRoot ].
+	
+	"Case 3: Two children - replace with successor"
+	successor := right findMinNode.
+	originalColor := successor color.
+	replacementNode := successor right.
+	
+	"Replace content with successor's content"
+	self contents: successor contents.
+	
+	"Remove successor"
+	self right: (right removeValue: successor contents).
+	
+	"Fix if we removed a black node"
+	originalColor = #black ifTrue: [
+		newRoot := self fixAfterDeletion ].
+	
+	^ newRoot
+]
+
+{ #category : 'removing' }
+CTRBTNode >> removeValue: anObject [
+
+	anObject < contents ifTrue: [
+		self left: (left removeValue: anObject).
+		^ self ].
+	anObject > contents ifTrue: [
+		self right: (right removeValue: anObject).
+		^ self ].
+	
+	"Found node to remove"
+	^ self removeThisNode
+]
+
+{ #category : 'replacing' }
+CTRBTNode >> replaceWith: replacementNode [
+
+	"Replace this node with replacementNode in tree structure"
+	parent ifNil: [ ^ replacementNode ].
+	
+	self == parent left
+		ifTrue: [ parent left: replacementNode ]
+		ifFalse: [ parent right: replacementNode ].
+	
+	^ replacementNode
 ]
 
 { #category : 'accessing' }

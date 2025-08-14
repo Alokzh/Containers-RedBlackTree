@@ -108,6 +108,12 @@ CTRBTNilNode >> isRed [
 	^ false
 ]
 
+{ #category : 'removing' }
+CTRBTNilNode >> removeValue: anObject [
+
+	^ self
+]
+
 { #category : 'accessing' }
 CTRBTNilNode >> search: anObject [
 

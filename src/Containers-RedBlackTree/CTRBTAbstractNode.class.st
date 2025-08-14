@@ -120,6 +120,12 @@ CTRBTAbstractNode >> parent: aNode [
 	parent := aNode
 ]
 
+{ #category : 'removing' }
+CTRBTAbstractNode >> removeValue: anObject [
+
+	^ self subclassResponsibility
+]
+
 { #category : 'accessing' }
 CTRBTAbstractNode >> search: anObject [
 

@@ -135,6 +135,36 @@ CTRedBlackTreeTest >> testInsertionRebalancing [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testRemoveLeafNode [
+
+	tree addAll: #(50 30 70 20).
+	tree remove: 20.
+	self assert: tree size equals: 3.
+	self deny: (tree includes: 20).
+	self assert: tree validate
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testRemoveNodeWithTwoChildren [
+
+	tree addAll: #(50 30 70 20 40).
+	tree remove: 30.
+	self assert: tree size equals: 4.
+	self deny: (tree includes: 30).
+	self assert: tree validate
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testRemoveRoot [
+
+	tree addAll: #(50 30 70 20 40 60 80).
+	tree remove: 50.
+	self assert: tree size equals: 6.
+	self deny: (tree includes: 50).
+	self assert: tree validate
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testRootIsAlwaysBlack [
 
 	tree add: 50.
