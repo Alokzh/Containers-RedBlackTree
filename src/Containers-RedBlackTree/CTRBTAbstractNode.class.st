@@ -55,7 +55,7 @@ CTRBTAbstractNode >> findMax [
 ]
 
 { #category : 'searching' }
-CTRBTAbstractNode >> findMaxNode [
+CTRBTAbstractNode >> findMaxNode [ 
 
 	^ self subclassResponsibility 
 ]
@@ -69,7 +69,7 @@ CTRBTAbstractNode >> findMin [
 { #category : 'searching' }
 CTRBTAbstractNode >> findMinNode [
 
-	self subclassResponsibility 
+	^ self subclassResponsibility 
 ]
 
 { #category : 'accessing' }
@@ -118,6 +118,18 @@ CTRBTAbstractNode >> parent [
 CTRBTAbstractNode >> parent: aNode [
 
 	parent := aNode
+]
+
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> postOrderDo: aBlock [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> preOrderDo: aBlock [
+
+	^ self subclassResponsibility 
 ]
 
 { #category : 'removing' }

@@ -65,7 +65,7 @@ CTRedBlackTree >> findMax [
 { #category : 'searching' }
 CTRedBlackTree >> findMaxNode [
 
-	^ self isEmpty
+		^ self isEmpty
 		ifTrue: [ nil ]
 		ifFalse: [ root findMaxNode ]
 ]
@@ -113,6 +113,18 @@ CTRedBlackTree >> initialize [
 CTRedBlackTree >> isEmpty [
 
 	^ root isEmpty
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> postOrderDo: aBlock [
+
+	root postOrderDo: aBlock
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> preOrderDo: aBlock [
+
+	root preOrderDo: aBlock
 ]
 
 { #category : 'removing' }

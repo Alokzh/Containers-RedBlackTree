@@ -56,7 +56,7 @@ CTRBTNilNode >> findMax [
 
 { #category : 'searching' }
 CTRBTNilNode >> findMaxNode [ 
-
+	
 	^ self
 ]
 
@@ -106,6 +106,18 @@ CTRBTNilNode >> isLeaf [
 CTRBTNilNode >> isRed [
 
 	^ false
+]
+
+{ #category : 'enumerating' }
+CTRBTNilNode >> postOrderDo: aBlock [
+
+	"Do Nothing for Nil Node"
+]
+
+{ #category : 'enumerating' }
+CTRBTNilNode >> preOrderDo: aBlock [
+
+	"Do Nothing for Nil Node"
 ]
 
 { #category : 'removing' }

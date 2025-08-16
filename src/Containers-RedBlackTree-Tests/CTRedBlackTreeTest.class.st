@@ -135,6 +135,26 @@ CTRedBlackTreeTest >> testInsertionRebalancing [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testPostOrderTraversal [
+
+		| result |
+	tree addAll: #(50 30 70 20).
+	result := OrderedCollection new.
+	tree postOrderDo: [ :each | result add: each ].
+	self assert: result last equals: tree root contents
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testPreOrderTraversal [
+
+	| result |
+	tree addAll: #(50 30 70 20).
+	result := OrderedCollection new.
+	tree preOrderDo: [ :each | result add: each ].
+	self assert: result first equals: tree root contents
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testRemoveLeafNode [
 
 	tree addAll: #(50 30 70 20).

@@ -290,6 +290,22 @@ CTRBTNode >> left: aNode [
 	aNode ifNotNil: [ aNode parent: self ]
 ]
 
+{ #category : 'enumerating' }
+CTRBTNode >> postOrderDo: aBlock [
+
+	left postOrderDo: aBlock.
+	right postOrderDo: aBlock.
+	aBlock value: contents
+]
+
+{ #category : 'enumerating' }
+CTRBTNode >> preOrderDo: aBlock [
+
+	aBlock value: contents.
+	left preOrderDo: aBlock.
+	right preOrderDo: aBlock
+]
+
 { #category : 'removing' }
 CTRBTNode >> removeThisNode [
 
