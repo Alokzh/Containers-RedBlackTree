@@ -35,10 +35,26 @@ CTRedBlackTreeTest >> testAddSingleElement [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testAnySatisfy [
+
+	tree addAll: #(50 30 70 20 40).
+	self assert: (tree anySatisfy: [ :each | each > 60 ]).
+	self deny: (tree anySatisfy: [ :each | each > 100 ])
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testAsArray [
 
 	tree addAll: #(50 30 70 20 40 60 80).
 	self assert: tree asArray equals: #(20 30 40 50 60 70 80)
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testAtIfAbsent [
+
+	tree addAll: #(50 30 70).
+	self assert: (tree at: 30 ifAbsent: [ #notFound ]) equals: 30.
+	self assert: (tree at: 99 ifAbsent: [ #notFound ]) equals: #notFound
 ]
 
 { #category : 'tests' }
@@ -57,6 +73,28 @@ CTRedBlackTreeTest >> testClear [
 	tree clear.
 	self assert: tree isEmpty.
 	self assert: tree size equals: 0
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testDetect [
+
+	| found |
+	tree addAll: #(50 30 70 20 40).
+	found := tree detect: [ :each | each > 45 ] ifNone: [ nil ].
+	self assert: found equals: 50.
+	found := tree detect: [ :each | each > 100 ] ifNone: [ #none ].
+	self assert: found equals: #none
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testDoMethod [
+
+
+	| result |
+	tree addAll: #(50 30 70 20 40).
+	result := OrderedCollection new.
+	tree do: [ :each | result add: each ].
+	self assert: result asArray equals: #(20 30 40 50 70)
 ]
 
 { #category : 'tests' }
@@ -92,6 +130,14 @@ CTRedBlackTreeTest >> testFindMinMaxNode [
 	tree addAll: #(50 30 70 20 80).
 	self assert: tree findMinNode contents equals: 20.
 	self assert: tree findMaxNode contents equals: 80
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testFirstLast [
+
+	tree addAll: #(50 30 70 20 80).
+	self assert: tree first equals: 20.
+	self assert: tree last equals: 80
 ]
 
 { #category : 'tests' }

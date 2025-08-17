@@ -27,6 +27,15 @@ CTRedBlackTree >> addAll: aCollection [
 	^ aCollection
 ]
 
+{ #category : 'enumerating' }
+CTRedBlackTree >> anySatisfy: aBlock [
+
+	self inOrderDo: [ :each |
+		(aBlock value: each) ifTrue: [ ^ true ]
+	].
+	^ false
+]
+
 { #category : 'converting' }
 CTRedBlackTree >> asArray [
 
@@ -34,6 +43,14 @@ CTRedBlackTree >> asArray [
 	result := OrderedCollection new: self size.
 	self inOrderDo: [ :each | result add: each ].
 	^ result asArray
+]
+
+{ #category : 'accessing' }
+CTRedBlackTree >> at: anObject ifAbsent: aBlock [
+
+	| result |
+	result := root search: anObject.
+	^ result ifNil: [ aBlock value ] ifNotNil: [ result ]
 ]
 
 { #category : 'accessing' }
@@ -47,6 +64,24 @@ CTRedBlackTree >> blackHeight [
 CTRedBlackTree >> clear [
 
 	root := CTRBTNilNode new
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> collect: aBlock [
+
+	| result |
+	result := OrderedCollection new: self size.
+	self inOrderDo: [ :each | result add: (aBlock value: each) ].
+	^ result
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> detect: aBlock ifNone: absentBlock [
+
+	self inOrderDo: [ :each |
+		(aBlock value: each) ifTrue: [ ^ each ]
+	].
+	^ absentBlock value
 ]
 
 { #category : 'enumerating' }
@@ -85,6 +120,12 @@ CTRedBlackTree >> findMinNode [
 ]
 
 { #category : 'accessing' }
+CTRedBlackTree >> first [
+
+	^ self findMin
+]
+
+{ #category : 'accessing' }
 CTRedBlackTree >> height [
 
 	^ root height
@@ -113,6 +154,12 @@ CTRedBlackTree >> initialize [
 CTRedBlackTree >> isEmpty [
 
 	^ root isEmpty
+]
+
+{ #category : 'accessing' }
+CTRedBlackTree >> last [
+
+	^ self findMax
 ]
 
 { #category : 'enumerating' }
@@ -149,6 +196,15 @@ CTRedBlackTree >> remove: anObject ifAbsent: aBlock [
 CTRedBlackTree >> root [
 
 	^ root isEmpty ifTrue: [ nil ] ifFalse: [ root ]
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> select: aBlock [
+
+	| result |
+	result := OrderedCollection new.
+	self inOrderDo: [ :each | (aBlock value: each) ifTrue: [ result add: each ] ].
+	^ result
 ]
 
 { #category : 'accessing' }
