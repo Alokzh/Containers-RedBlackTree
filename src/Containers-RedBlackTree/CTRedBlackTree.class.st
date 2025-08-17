@@ -91,6 +91,34 @@ CTRedBlackTree >> do: aBlock [
 	self inOrderDo: aBlock
 ]
 
+{ #category : 'enumerating' }
+CTRedBlackTree >> elementsFrom: min to: max [
+
+	| result |
+	min > max ifTrue: [ ^ #() ].
+	result := OrderedCollection new.
+	root elementsFrom: min to: max into: result.
+	^ result
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> elementsGreaterThan: anObject [
+
+	| result |
+	result := OrderedCollection new.
+	root elementsGreaterThan: anObject into: result.
+	^ result
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> elementsLessThan: anObject [
+
+	| result |
+	result := OrderedCollection new.
+	root elementsLessThan: anObject into: result.
+	^ result
+]
+
 { #category : 'searching' }
 CTRedBlackTree >> findMax [
 

@@ -48,6 +48,24 @@ CTRBTNilNode >> contents: anObject [
 	"Do Nothing for Nil Node"
 ]
 
+{ #category : 'enumerating' }
+CTRBTNilNode >> elementsFrom: min to: max into: aCollection [
+
+	"Do nothing for nil node"
+]
+
+{ #category : 'enumerating' }
+CTRBTNilNode >> elementsGreaterThan: anObject into: aCollection [
+
+	"Do nothing for nil node"
+]
+
+{ #category : 'enumerating' }
+CTRBTNilNode >> elementsLessThan: anObject into: aCollection [
+
+	"Do nothing for nil node"
+]
+
 { #category : 'searching' }
 CTRBTNilNode >> findMax [ 
 

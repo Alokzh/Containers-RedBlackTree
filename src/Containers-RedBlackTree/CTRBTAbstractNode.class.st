@@ -48,6 +48,24 @@ CTRBTAbstractNode >> contents: anObject [
 	^ self subclassResponsibility 
 ]
 
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> elementsFrom: min to: max into: aCollection [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> elementsGreaterThan: anObject into: aCollection [
+
+	^ self subclassResponsibility 
+]
+
+{ #category : 'enumerating' }
+CTRBTAbstractNode >> elementsLessThan: anObject into: aCollection [
+
+	^ self subclassResponsibility 
+]
+
 { #category : 'searching' }
 CTRBTAbstractNode >> findMax [
 

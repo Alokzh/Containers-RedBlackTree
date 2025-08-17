@@ -105,6 +105,41 @@ CTRedBlackTreeTest >> testDuplicateHandling [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testElementsFromTo [
+
+	| result |
+	tree addAll: #(50 30 70 20 40 60 80).
+	result := tree elementsFrom: 35 to: 65.
+	self assert: result asArray equals: #(40 50 60).
+	result := tree elementsFrom: 10 to: 15.
+	self assert: result isEmpty.
+	result := tree elementsFrom: 65 to: 35.
+	self assert: result isEmpty
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testElementsGreaterThan [
+
+	| result |
+	tree addAll: #(50 30 70 20 40 60 80).
+	result := tree elementsGreaterThan: 45.
+	self assert: result asArray equals: #(50 60 70 80).
+	result := tree elementsGreaterThan: 80.
+	self assert: result isEmpty
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testElementsLessThan [
+
+	| result |
+	tree addAll: #(50 30 70 20 40 60 80).
+	result := tree elementsLessThan: 45.
+	self assert: result asArray equals: #(20 30 40).
+	result := tree elementsLessThan: 20.
+	self assert: result isEmpty
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testEmpty [
 
 	self assert: tree isEmpty.

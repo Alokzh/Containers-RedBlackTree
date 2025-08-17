@@ -54,6 +54,34 @@ CTRBTNode >> contents: anObject [
 	contents := anObject
 ]
 
+{ #category : 'enumerating' }
+CTRBTNode >> elementsFrom: min to: max into: aCollection [
+
+	contents > min ifTrue: [
+		left elementsFrom: min to: max into: aCollection ].
+	(contents between: min and: max) ifTrue: [ aCollection add: contents ].
+	contents < max ifTrue: [
+		right elementsFrom: min to: max into: aCollection ]
+]
+
+{ #category : 'enumerating' }
+CTRBTNode >> elementsGreaterThan: anObject into: aCollection [
+
+	contents > anObject ifTrue: [
+		left elementsGreaterThan: anObject into: aCollection.
+		aCollection add: contents ].
+	right elementsGreaterThan: anObject into: aCollection
+]
+
+{ #category : 'enumerating' }
+CTRBTNode >> elementsLessThan: anObject into: aCollection [
+
+	left elementsLessThan: anObject into: aCollection.
+	contents < anObject ifFalse: [ ^ self ].
+	aCollection add: contents.
+	right elementsLessThan: anObject into: aCollection
+]
+
 { #category : 'searching' }
 CTRBTNode >> findMax [
 
