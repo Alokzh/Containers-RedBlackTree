@@ -174,6 +174,12 @@ CTRedBlackTree >> preOrderDo: aBlock [
 	root preOrderDo: aBlock
 ]
 
+{ #category : 'searching' }
+CTRedBlackTree >> predecessorOf: anObject [
+
+	^ root predecessorOf: anObject
+]
+
 { #category : 'removing' }
 CTRedBlackTree >> remove: anObject [
 
@@ -211,6 +217,12 @@ CTRedBlackTree >> select: aBlock [
 CTRedBlackTree >> size [
 
 	^ root size
+]
+
+{ #category : 'searching' }
+CTRedBlackTree >> successorOf: anObject [
+
+	^ root successorOf: anObject
 ]
 
 { #category : 'accessing' }

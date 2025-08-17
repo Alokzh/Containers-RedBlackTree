@@ -201,6 +201,18 @@ CTRedBlackTreeTest >> testPreOrderTraversal [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testPredecessorSuccessor [
+
+	tree addAll: #(50 30 70 20 40 60 80).
+	self assert: (tree predecessorOf: 50) equals: 40.
+	self assert: (tree predecessorOf: 20) isNil.
+	self assert: (tree successorOf: 50) equals: 60.
+	self assert: (tree successorOf: 80) isNil.
+	self assert: (tree predecessorOf: 35) equals: 30.
+	self assert: (tree successorOf: 35) equals: 40
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testRemoveLeafNode [
 
 	tree addAll: #(50 30 70 20).

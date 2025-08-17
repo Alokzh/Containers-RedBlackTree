@@ -120,6 +120,12 @@ CTRBTNilNode >> preOrderDo: aBlock [
 	"Do Nothing for Nil Node"
 ]
 
+{ #category : 'searching' }
+CTRBTNilNode >> predecessorOf: anObject [
+
+	^ nil
+]
+
 { #category : 'removing' }
 CTRBTNilNode >> removeValue: anObject [
 
@@ -136,6 +142,12 @@ CTRBTNilNode >> search: anObject [
 CTRBTNilNode >> size [ 
 
 	^ 0
+]
+
+{ #category : 'searching' }
+CTRBTNilNode >> successorOf: anObject [
+
+	^ nil
 ]
 
 { #category : 'validation' }

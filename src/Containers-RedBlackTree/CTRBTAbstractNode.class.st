@@ -132,6 +132,12 @@ CTRBTAbstractNode >> preOrderDo: aBlock [
 	^ self subclassResponsibility 
 ]
 
+{ #category : 'searching' }
+CTRBTAbstractNode >> predecessorOf: anObject [
+
+	^ self subclassResponsibility
+]
+
 { #category : 'removing' }
 CTRBTAbstractNode >> removeValue: anObject [
 
@@ -148,6 +154,12 @@ CTRBTAbstractNode >> search: anObject [
 CTRBTAbstractNode >> size [
 
 	^ self subclassResponsibility 
+]
+
+{ #category : 'searching' }
+CTRBTAbstractNode >> successorOf: anObject [
+
+	^ self subclassResponsibility
 ]
 
 { #category : 'validation' }

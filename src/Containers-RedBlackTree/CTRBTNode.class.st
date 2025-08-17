@@ -306,6 +306,16 @@ CTRBTNode >> preOrderDo: aBlock [
 	right preOrderDo: aBlock
 ]
 
+{ #category : 'searching' }
+CTRBTNode >> predecessorOf: anObject [
+
+	| rightResult |
+	anObject <= contents ifTrue: [
+		^ left predecessorOf: anObject ].
+	rightResult := right predecessorOf: anObject.
+	^ rightResult ifNil: [ contents ] ifNotNil: [ rightResult ]
+]
+
 { #category : 'removing' }
 CTRBTNode >> removeThisNode [
 
@@ -457,6 +467,16 @@ CTRBTNode >> search: anObject [
 CTRBTNode >> size [
 
 	^ 1 + left size + right size
+]
+
+{ #category : 'searching' }
+CTRBTNode >> successorOf: anObject [
+
+	| leftResult |
+	anObject >= contents ifTrue: [
+		^ right successorOf: anObject ].
+	leftResult := left successorOf: anObject.
+	^ leftResult ifNil: [ contents ] ifNotNil: [ leftResult ]
 ]
 
 { #category : 'validation' }
