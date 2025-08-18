@@ -75,6 +75,15 @@ CTRedBlackTree >> collect: aBlock [
 	^ result
 ]
 
+{ #category : 'copying' }
+CTRedBlackTree >> copy [
+
+	| newTree |
+	newTree := self class new.
+	self inOrderDo: [ :each | newTree add: each ].
+	^ newTree
+]
+
 { #category : 'enumerating' }
 CTRedBlackTree >> detect: aBlock ifNone: absentBlock [
 
@@ -159,6 +168,22 @@ CTRedBlackTree >> height [
 	^ root height
 ]
 
+{ #category : 'testing' }
+CTRedBlackTree >> ifEmpty: aBlock [
+
+	^ self isEmpty
+		ifTrue: [ aBlock value ]
+		ifFalse: [ self ]
+]
+
+{ #category : 'testing' }
+CTRedBlackTree >> ifNotEmpty: aBlock [
+
+	^ self isEmpty
+		ifFalse: [ aBlock value: self ]
+		ifTrue: [ self ]
+]
+
 { #category : 'enumerating' }
 CTRedBlackTree >> inOrderDo: aBlock [
 
@@ -224,6 +249,13 @@ CTRedBlackTree >> remove: anObject ifAbsent: aBlock [
 	root parent: nil.
 	root isEmpty ifFalse: [ root color: #black ].
 	^ anObject
+]
+
+{ #category : 'enumerating' }
+CTRedBlackTree >> removeAll: aCollection [
+
+	aCollection do: [ :each | self remove: each ifAbsent: [ ] ].
+	^ aCollection
 ]
 
 { #category : 'accessing' }

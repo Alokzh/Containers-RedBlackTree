@@ -149,6 +149,15 @@ CTRedBlackTreeTest >> testEmpty [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testEmptyTreeOperations [
+
+	self assert: tree findMin isNil.
+	self assert: tree findMax isNil.
+	self deny: (tree includes: 42).
+	self deny: (tree anySatisfy: [ :each | true ])
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testFindMinMax [
 
 	self assert: tree findMin isNil.
@@ -186,6 +195,17 @@ CTRedBlackTreeTest >> testHeight [
 ]
 
 { #category : 'tests' }
+CTRedBlackTreeTest >> testIfEmptyIfNotEmpty [
+
+	| result |
+	result := tree ifEmpty: [ #empty ].
+	self assert: result equals: #empty.
+	tree add: 42.
+	result := tree ifNotEmpty: [ :t | #notEmpty ].
+	self assert: result equals: #notEmpty
+]
+
+{ #category : 'tests' }
 CTRedBlackTreeTest >> testInOrderTraversal [
 
 	| result |
@@ -213,6 +233,16 @@ CTRedBlackTreeTest >> testInsertionRebalancing [
 	tree add: 15.
 	tree add: 25.
 	tree add: 35
+]
+
+{ #category : 'tests' }
+CTRedBlackTreeTest >> testParentChildRelationships [
+
+	tree addAll: #(50 30 70 20 40 60 80).
+	self assert: tree root parent isNil.
+	self assert: tree root left parent equals: tree root.
+	self assert: tree root right parent equals: tree root.
+	self assert: tree root left left parent equals: tree root left
 ]
 
 { #category : 'tests' }
