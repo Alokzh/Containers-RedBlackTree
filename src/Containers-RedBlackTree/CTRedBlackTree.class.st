@@ -1,5 +1,28 @@
 "
-I represent a Red-Black Tree, a self-balancing binary search tree
+I represent a Red-Black Tree, a self-balancing binary search tree.
+I maintain the BST property while ensuring Red-Black Tree properties
+that guarantee O(log n) worst-case performance for all operations.
+
+This implementation provides a complete, robust Red-Black Tree with
+proper insertion and deletion rebalancing algorithms.
+
+Red-Black Tree Properties:
+1. Every node is either red or black
+2. The root is always black
+3. All nil nodes are black  
+4. Red nodes cannot have red children
+5. Every path from root to nil contains the same number of black nodes
+
+My public API is designed to be polymorphic with CTBinarySearchTree and CTAVLTree, providing the same collection methods for enumeration, searching, and accessing.
+
+Usage:
+    tree := CTRedBlackTree new.
+    tree addAll: #(50 30 70 20 40 60 80).
+    tree asArray. => #(20 30 40 50 60 70 80)
+    tree height. => 3 or 4 (guaranteed O(log n))
+    tree first. => 20
+    tree includes: 30. => true
+    tree elementsFrom: 30 to: 60. => #(30 40 50 60)
 "
 Class {
 	#name : 'CTRedBlackTree',

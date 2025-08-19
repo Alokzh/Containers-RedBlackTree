@@ -1,6 +1,18 @@
 "
-I am the abstract base class for Red-Black Tree nodes.
+I am an abstract base class for Red-Black Tree nodes.
 I define the common interface that both regular nodes (CTRBTNode) and nil nodes (CTRBTNilNode) must implement.
+I include protocol for Red-Black Tree specific operations like color management and rebalancing, as well as standard tree enumeration and searching.
+
+Red-Black Trees maintain these invariants:
+1. Every node is either red or black
+2. The root is always black
+3. All nil nodes are black
+4. Red nodes cannot have red children
+5. Every path from root to nil contains the same number of black nodes
+
+Subclasses:
+- CTRBTNilNode
+- CTRBTNode
 "
 Class {
 	#name : 'CTRBTAbstractNode',

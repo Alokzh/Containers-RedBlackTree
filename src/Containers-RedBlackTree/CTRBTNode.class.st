@@ -1,5 +1,8 @@
 "
-I represent a node containing data in a Red-Black Tree. I hold a value and a color.
+I represent a node in a Red-Black Tree containing actual data.
+I hold a value, references to left and right child nodes, and a color (red or black).
+I maintain the Red-Black Tree invariants through complete, standard algorithms.
+This implementation provides full insertion and deletion with proper rebalancing.
 "
 Class {
 	#name : 'CTRBTNode',

@@ -1,5 +1,9 @@
 "
-I represent an empty leaf node in a Red-Black Tree. All leaf nodes in a Red-Black tree are considered black
+I represent an empty node in a Red-Black Tree using the Null Object pattern.
+I am always black by definition (Red-Black Tree property), which simplifies tree algorithms.
+I provide default 'do nothing' behavior for all tree operations, eliminating the need for nil checks throughout the tree algorithms.
+When elements are added to me, I create and return a new CTRBTNode containing the element, effectively growing the tree.
+My black height is 0, and I contribute 0 to any path's black node count.
 "
 Class {
 	#name : 'CTRBTNilNode',
